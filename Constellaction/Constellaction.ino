@@ -61,8 +61,8 @@ void loop() {
   delay(20);
 
   variation_1 = abs(sensor_1_value - analogRead(sensor_1_pin));
-  variation_2 = abs(sensor_1_value - analogRead(sensor_2_pin));
-  variation_3 = abs(sensor_1_value - analogRead(sensor_3_pin));
+  variation_2 = abs(sensor_2_value - analogRead(sensor_2_pin));
+  variation_3 = abs(sensor_3_value - analogRead(sensor_3_pin));
 
   Serial.print("Variation in raw sensor values \t 1:" );
   Serial.print(variation_1);
@@ -73,6 +73,16 @@ void loop() {
 
   if (variation_1 > 20 or variation_2 > 20 or variation_3 > 20) {
 
+	  start_light_and_sound();
+
+  }
+
+}
+
+
+
+void start_light_and_sound() {
+	
     digitalWrite(led_1_pin, HIGH);
     digitalWrite(led_2_pin, HIGH);
     digitalWrite(led_3_pin, HIGH);
@@ -86,17 +96,5 @@ void loop() {
     variation_1 = 0;
     variation_2 = 0;
     variation_3 = 0;
-
-  }
-
-
-
-
-
-
-
-  digitalWrite(led_1_pin, LOW);
-  digitalWrite(led_2_pin, LOW);
-  digitalWrite(led_3_pin, LOW);
-
+	
 }
